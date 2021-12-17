@@ -1,0 +1,57 @@
+<div class="jumbotron" id="divprincipal">
+    <div class="container-fluid">
+        <div class="row" id="row-menu">
+            <div class="divlogin" id="div-menu">
+                <div class="divlogo" id="div-logo">
+                    <img src="assets/images/logo.jpg" class="loginimg">
+                </div>
+                <div *ngIf="error" class="msjerror">
+                    <div *ngIf="errorserver">Error del servidor</div>
+                    <div *ngIf="errorusu">Correo o contraseña invalida</div>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="username" class="label lbllog">Correo</label>
+                        <input type="text" formControlName="username" class="form-control" style="font-weight: 500;"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Porfavor ingrese su correo</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="label lbllog">Contraseña</label>
+                        <input type="password" formControlName="password" class="form-control" style="font-weight: 500;"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Porfavor ingrese su contraseña</div>
+                        </div>
+                    </div>
+                    <div class=row id="div-forgot">
+                        <a href="#" class="btn-link">¿Olvidó su contraseña?</a>
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btnlogin" id="boton_ingreso">INGRESAR</button>
+                        <p style="color: rgb(145, 145, 145);">versión {{version}}</p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="row" id="lin_lin">
+            <a id="idp-copyright-link" href="https://www.cloudblue.com/legal/eula/"
+                onclick="window.open(this.href); return false;">© 2021 Ingram Micro Inc. All rights reserved.</a>
+        </div>
+    </div>
+</div>
+
+<div id="ModalAlert" class="modal" style="z-index: 10001;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close icons" id="close" (click)="CerrarModalAlert()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h5 style="text-align:center; color: black; font-size: large;">{{alerta}}</h5>
+        </div>
+    </div>
+</div>

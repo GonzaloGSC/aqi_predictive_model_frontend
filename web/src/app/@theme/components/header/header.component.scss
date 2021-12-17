@@ -1,0 +1,168 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../styles/themes';
+@include nb-install-component() {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .logo-container {
+        display: flex;
+        align-items: center;
+        width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
+    }
+    nb-action {
+        height: auto;
+        display: flex;
+        align-content: center;
+    }
+    nb-user {
+        cursor: pointer;
+    }
+     ::ng-deep nb-search button {
+        padding: 0!important;
+    }
+    .header-container {
+        display: flex;
+        align-items: center;
+        width: auto;
+        .sidebar-toggle {
+            @include nb-ltr(padding-right, 1.25rem);
+            @include nb-rtl(padding-left, 1.25rem);
+            text-decoration: none;
+            color: rgb(0, 0, 0)!important;
+            nb-icon {
+                font-size: 1.75rem;
+            }
+        }
+        .sidebar-toggle:hover {
+            color: rgb(101, 171, 252)!important;
+
+        }
+        .logo {
+            padding: 0 1.25rem;
+            font-size: 1.75rem;
+            @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+            @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        
+    }
+    @include media-breakpoint-down(sm) {
+        .control-item {
+            display: none;
+        }
+        .user-action {
+            border: none;
+            padding: 0;
+        }
+    }
+    @include media-breakpoint-down(is) {
+        nb-select {
+            display: none;
+        }
+    }
+}
+
+.logoheader {
+    height: 50px !important;
+    width: 300px !important;
+    background-image: url(assets/images/logo.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0px;
+    background-position-y: center;
+}
+
+.logo {
+    padding: 0 1.25rem;
+    font-size: 1.75rem;
+    @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+    @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.btngreen, .btnred, .btnblue, .btnyellow, .btnblack {
+    text-shadow: none !important;
+    border: none !important;
+    color: rgb(255, 255, 255) !important;
+    font-weight: 500 !important;
+    font-family: Exo !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: .4px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+    border-radius: .5rem !important;
+    transition: all .2s ease !important;
+    z-index: 0;
+}
+.btnblue{
+    background: var(--colAzulIngram) !important; 
+}
+.btnblack{
+    background: var(--colBotonAlt) !important; 
+}
+
+.btnred{
+    background: #ff5784 !important;
+}
+.btngreen{
+    background: #56c000 !important;
+}
+.btnyellow{
+    background: -var(--colAmarillo0) !important;
+}
+
+.btnblue:hover {
+    background: var(--colHover) !important;
+}
+
+.btnblack:hover {
+    background: var(--colHover) !important;
+}
+
+.btnred:hover {
+    background: #ff3142 !important;
+}
+.btngreen:hover {
+    background: #7ee41f !important;
+}
+.btnyellow:hover {
+    background: #ffaa00 !important;
+}
+
+.btngreen:active, .btnred:active, .btnblue:active, .btnyellow:active, .btnblack:active{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;   
+    border-color: transparent !important;
+}
+.btnblue:active {
+    background: var(--colHover) !important;
+}
+.btnblack:active{
+    background: var(--colHover) !important;
+}
+.btnred:active {
+    background: #ff5e1f !important;
+}
+.btngreen:active {
+    background: #5eff00 !important;
+}
+.btnyellow:active {
+    background: #fffb00 !important;
+}
+
+
+.btngreen:disabled, .btnred:disabled, .btnblue:disabled, .btnyellow:disabled, .dtnblack:disabled{
+    opacity: .4 !important;
+    background: var(--colDisabled) !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+}

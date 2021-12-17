@@ -1,0 +1,182 @@
+<nb-card style="height: max-content; overflow: hidden">
+    <nb-card-body style="overflow-y: hidden;">
+        <h4 class="tituloPagina">Modelo predictivo de la contaminación del aire</h4>
+        <div class="row" style="display: flex;">
+
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">Comuna:</p>
+                <ng-select #selectC placeholder="Seleccionar" [(ngModel)]="selectComuna" [disabled]="loading"
+                    [nbSpinner]="loading" nbSpinnerStatus="info" style="width: 200px; margin-bottom: 5px;">
+                    <ng-option *ngFor="let opt of opcionesComuna" [value]="opt.id">{{opt.nombre}}
+                    </ng-option>
+                </ng-select>
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==1">Seleccionar comuna.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">Fecha inicial:</p>
+                <div style="display: flex;">
+                    <div class="row" style="display: contents;">
+                        <input nbInput placeholder="DD/MM/YYYY" [(ngModel)]="fechaInicio" [nbDatepicker]="datepicker1"
+                            style="height: 36px; max-width: 150px; text-align: center;">
+                        <nb-datepicker #datepicker1 format="dd/MM/yyyy"></nb-datepicker>
+                    </div>
+                </div>
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==2">Ingresar fecha.
+                    </p>
+                </div>
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">Temperatura (ºC):</p>
+                <input nbInput [(ngModel)]="temperaturaIngreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 2, 6, 'temp', $event.target)"
+                    style="width: 140px; height: 36px;" />
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">PM25 (µg/m3) 24h:</p>
+                <input nbInput [(ngModel)]="pm25Ingreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 4, 6, 'pm25', $event.target)"
+                    style="width: 140px; height: 36px;" />
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==3">Ingresar un elemento.
+                    </p>
+                </div>
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">PM10 (µg/m3) 24h:</p>
+                <input nbInput [(ngModel)]="pm10Ingreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 4, 6, 'pm10', $event.target)"
+                    style="width: 140px; height: 36px;" />
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==3">Ingresar un elemento.
+                    </p>
+                </div>
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">O3 (ppb) 8h:</p>
+                <input nbInput [(ngModel)]="o3Ingreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 4, 6, 'o3', $event.target)"
+                    style="width: 140px; height: 36px;" />
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==3">Ingresar un elemento.
+                    </p>
+                </div>
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">NO2 (ppb) 1h:</p>
+                <input nbInput [(ngModel)]="no2Ingreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 4, 6, 'no2', $event.target)"
+                    style="width: 140px; height: 36px;" />
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==3">Ingresar un elemento.
+                    </p>
+                </div>
+            </div>
+            <div class="col" style="display: block; margin-right: 20px; max-width: max-content;">
+                <p class="subtituloStepper">CO (ppm) 8h:</p>
+                <input nbInput [(ngModel)]="coIngreso" type="text" placeholder="Ingresar"
+                    (input)="FormatoNumero($event.data, $event.target.value, 4, 6, 'co', $event.target)"
+                    style="width: 140px; height: 36px;" />
+                <div class="row" style="height: 20px;">
+                    <p class="subtituloStepperAviso" *ngIf="codigoError==3">Ingresar un elemento.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center;">
+            <div class="row" style="display: flex; justify-content: space-evenly; width: 50%;">
+                <div class="col" style="display: block; max-width: max-content; align-self: end;">
+                    <button class="btnblue" [disabled]="loading" [nbSpinner]="loading" nbSpinnerStatus="info"
+                        style="width: 160px; height: 36px; margin-bottom: 5px;"
+                        (click)="RealizarPrediccion()">Predecir</button>
+                </div>
+                <div class="col" style="display: block; max-width: max-content; align-self: end;">
+                    <button class="btnyellow" [disabled]="loading" [nbSpinner]="loading" nbSpinnerStatus="info"
+                        style="width: 160px; height: 36px; margin-bottom: 5px;" (click)="LimpiarTodo()">Limpiar
+                        Todo</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display: flex; margin-top: 20px; justify-content: center;">
+            <div class="col" style="display: block; max-width: 350px;">
+                <table class="tg">
+                    <thead>
+                        <tr>
+                            <th class="tg-9wq8">Niveles del AQI</th>
+                            <th class="tg-9wq8">Rangos</th>
+                            <th class="tg-9wq8">Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: white; color: black;">
+                            <td class="tg-9wq8">Buena</td>
+                            <td class="tg-9wq8">0 - 50</td>
+                            <td class="tg-9wq8"><i class="fas fa-palette" style="color: #35b435;"></i></td>
+                        </tr>
+                        <tr style="background-color: white; color: black;">
+                            <td class="tg-9wq8">Moderada</td>
+                            <td class="tg-9wq8">50 - 100</td>
+                            <td class="tg-9wq8"><i class="fas fa-palette" style="color: #e7e231;"></i></td>
+                        </tr>
+                        <tr style="background-color: white; color: black;">
+                            <td class="tg-9wq8">Insano para grupos sensibles</td>
+                            <td class="tg-9wq8">100 - 150</td>
+                            <td class="tg-9wq8"><i class="fas fa-palette" style="color: #df8d30;"></i></td>
+                        </tr>
+                        <tr style="background-color: white; color: black;">
+                            <td class="tg-9wq8">Insalubre</td>
+                            <td class="tg-9wq8">150 - 200</td>
+                            <td class="tg-9wq8"><i class="fas fa-palette" style="color: #df4f30;"></i></td>
+                        </tr>
+                        <tr style="background-color: white; color: black;">
+                            <td class="tg-9wq8">Muy Insalubre</td>
+                            <td class="tg-9wq8">200 - 300</td>
+                            <td class="tg-9wq8"><i class="fas fa-palette" style="color: #b830df;"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row" style="display: flex; margin-top: 20px; justify-content: center; height: max-content;">
+
+            <div class="col" style="display: block; margin-right: 5px; max-width: 90%;">
+                <h5 class="tituloStepper" style="text-align: center; margin-top: 20px; margin-bottom: 0px;">Simulación gráfica AQI</h5>
+                <!-- <nb-card-body style="overflow-y: hidden; overflow-x: auto;"> -->
+                    <canvas baseChart [datasets]="graficaData" [labels]="graficaLabels" [colors]="graficaColors"
+                        [options]="graficaOptions" [legend]="graficaLegend" [chartType]="graficaType"
+                        [plugins]="graficaPlugins" style="width: 100%;">
+                    </canvas>
+                <!-- </nb-card-body> -->
+            </div>
+            <div class="col" style="display: block; max-width: min-content;">
+                <h5 class="tituloStepper" style="text-align: center; margin-top: 20px; margin-bottom: 0px;">Predicciones del modelo</h5>
+                <table class="tg">
+                    <thead>
+                        <tr>
+                            <th class="tg-9wq8">Día</th>
+                            <th class="tg-9wq8">Nivel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let opt of filasTabla" style="background-color: white; color: black;">
+                            <td class="tg-9wq8">{{opt.fecha}}</td>
+                            <td class="tg-9wq8" *ngIf="opt.nivel==1"><i class="fas fa-palette" style="color: #35b435;"></i></td>
+                            <td class="tg-9wq8" *ngIf="opt.nivel==2"><i class="fas fa-palette" style="color: #e7e231;"></i></td>
+                            <td class="tg-9wq8" *ngIf="opt.nivel==3"><i class="fas fa-palette" style="color: #df8d30;"></i></td>
+                            <td class="tg-9wq8" *ngIf="opt.nivel==4"><i class="fas fa-palette" style="color: #df4f30;"></i></td>
+                            <td class="tg-9wq8" *ngIf="opt.nivel==5"><i class="fas fa-palette" style="color: #b830df;"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </nb-card-body>
+</nb-card>
