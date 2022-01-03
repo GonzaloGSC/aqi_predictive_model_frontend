@@ -9,7 +9,8 @@ from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Path(__file__).resolve().parent.parent
-
+BASE_DIR_GENERAL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REACT_APP = '../web/build' 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -58,14 +59,17 @@ MIDDLEWARE = [
 
 ALLOWED_HOSTS = [
     'localhost', # BORRAR
+    '127.0.0.1', # BORRAR
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200', # BORRAR
+    'http://127.0.0.1:8000', # BORRAR
     'http://localhost:8000', # BORRAR
 )
 CORS_ALLOWED_ORIGIN_REGEXES = (
     r'^http://localhost:4200$', # BORRAR
+    r'^http://127.0.0.1:8000$', # BORRAR
     r'^http://localhost:8000$', # BORRAR
 )
 
@@ -96,7 +100,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "../../Pagina_Colegio/build")
+            os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -109,6 +113,12 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_DIRS = [
+    os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
+]
+     
+
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -161,16 +171,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
-MEDIA_URL = "/media/"
+STATIC_URL = "/static_borrar/"
+MEDIA_URL = "/media_borrar/"
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, "../../Pagina_Colegio/build/static")
+    os.path.join(BASE_DIR, "../web/build")
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "../../public_html/static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "../../public_html/media")
+STATIC_ROOT = os.path.join(BASE_DIR, "../../public_html/static_borrar")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../../public_html/media_borrar")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+WHITENOISE_INDEX_FILE = True
 
 # REST framework settings
 REST_FRAMEWORK = {

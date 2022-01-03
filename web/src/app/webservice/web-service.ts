@@ -7,7 +7,7 @@ export class ApiService {
         if (window.location.href.includes("localhost")) {
             this.urlWS = 'http://localhost:8000/'; // LOCALHOST
         } else {
-            this.urlWS = document.location.origin + '/' + document.location.pathname + '/ws/Kernel/'; // prod
+            this.urlWS = document.location.origin + '/' + document.location.pathname + '/test/'; // prod
         }
     }
     urlWS: string = ''; // LOCALHOST
