@@ -12,3 +12,7 @@ La ciudad de Santiago, es una de las ciudades con una contaminación del aire m�
 - Python.
 - Typescript.
 - Html/css (lenguaje de marcado/diseño respectivamente).
+
+# Captura de Interfaz
+
+![image](https://user-images.githubusercontent.com/63922626/152660346-f4dcbd95-57c6-41eb-8428-4b32fe8e116a.png)
