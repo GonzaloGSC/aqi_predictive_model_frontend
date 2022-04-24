@@ -19,7 +19,7 @@ REACT_APP = '../web/build'
 SECRET_KEY = 'django-insecure-8%&1lo_wmv)y-e)v9+u-jy=u1l3mp@w+yt-)dwwix^nz@=dk%s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True    
+DEBUG = False    
 
 # Aplicacion de react
 
@@ -58,19 +58,30 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-    'localhost', # BORRAR
-    '127.0.0.1', # BORRAR
+    "localhost",  # BORRAR
+    "127.0.0.1",  # BORRAR
+    # 'escuelasespeciales.cl',
+    # 'www.escuelasespeciales.cl'
 ]
+
 CORS_ALLOW_CREDENTIALS = True
+
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:4200', # BORRAR
-    'http://127.0.0.1:8000', # BORRAR
-    'http://localhost:8000', # BORRAR
+    "http://localhost:3000",  # BORRAR
+    "http://127.0.0.1:8000",  # BORRAR
+    "http://localhost:8000",  # BORRAR
+    # 'http://escuelasespeciales.cl',
+    # 'http://www.escuelasespeciales.cl',
+    # 'https://escuelasespeciales.cl',
+    # 'https://www.escuelasespeciales.cl'
 )
+
 CORS_ALLOWED_ORIGIN_REGEXES = (
-    r'^http://localhost:4200$', # BORRAR
-    r'^http://127.0.0.1:8000$', # BORRAR
-    r'^http://localhost:8000$', # BORRAR
+    r"^http://localhost:3000$",  # BORRAR
+    r"^http://127.0.0.1:8000$",  # BORRAR
+    r"^http://localhost:8000$",  # BORRAR
+    # r'^escuelasespeciales.cl$',
+    # r'^www.escuelasespeciales.cl$'
 )
 
 CORS_ALLOW_METHODS = [
@@ -81,6 +92,7 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
@@ -166,18 +178,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = "/static_borrar/"
-MEDIA_URL = "/media_borrar/"
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, "../web/build")
-]
-STATIC_ROOT = os.path.join(BASE_DIR, "../../public_html/static_borrar")
-MEDIA_ROOT = os.path.join(BASE_DIR, "../../public_html/media_borrar")
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_INDEX_FILE = True
