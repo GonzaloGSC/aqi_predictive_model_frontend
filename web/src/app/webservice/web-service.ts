@@ -5,7 +5,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 export class ApiService {
     constructor(private http: HttpClient) {
         if (window.location.href.includes("localhost")) {
-            this.urlWS = 'http://localhost:8000/'; // LOCALHOST
+            this.urlWS = 'http://localhost:8080/'; // LOCALHOST
         } else {
             this.urlWS = document.location.origin + '/' + document.location.pathname + '/test/'; // prod
         }

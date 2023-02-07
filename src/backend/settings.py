@@ -12,6 +12,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Path(__
 BASE_DIR_GENERAL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 REACT_APP = '../web/build' 
 
+RUN_SERVER_PORT = '8080'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -19,7 +21,7 @@ REACT_APP = '../web/build'
 SECRET_KEY = 'django-insecure-8%&1lo_wmv)y-e)v9+u-jy=u1l3mp@w+yt-)dwwix^nz@=dk%s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False    
+DEBUG = True    
 
 # Aplicacion de react
 
@@ -58,30 +60,30 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-    "localhost",  # BORRAR
-    "127.0.0.1",  # BORRAR
-    # 'escuelasespeciales.cl',
-    # 'www.escuelasespeciales.cl'
+    "naturaliafood.cl",
+    "www.naturaliafood.cl",
+    "localhost",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
-    "http://localhost:3000",  # BORRAR
-    "http://127.0.0.1:8000",  # BORRAR
-    "http://localhost:8000",  # BORRAR
-    # 'http://escuelasespeciales.cl',
-    # 'http://www.escuelasespeciales.cl',
-    # 'https://escuelasespeciales.cl',
-    # 'https://www.escuelasespeciales.cl'
+    'http://naturaliafood.cl',
+    'http://www.naturaliafood.cl',
+    'https://naturaliafood.cl',
+    'https://www.naturaliafood.cl',
+    'http://naturaliafood.cl',
+    'http://www.naturaliafood.cl',
+
+    'http://localhost:4200',
+    'https://localhost:4200',
 )
 
 CORS_ALLOWED_ORIGIN_REGEXES = (
-    r"^http://localhost:3000$",  # BORRAR
-    r"^http://127.0.0.1:8000$",  # BORRAR
-    r"^http://localhost:8000$",  # BORRAR
-    # r'^escuelasespeciales.cl$',
-    # r'^www.escuelasespeciales.cl$'
+    r'^naturaliafood.cl$',
+    r'^www.naturaliafood.cl$',
+
+    r'^localhost:4200$',
 )
 
 CORS_ALLOW_METHODS = [
@@ -111,10 +113,10 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
-        ],
-        'APP_DIRS': True,
+        # 'DIRS': [
+        #     os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
+        # ],
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -126,9 +128,9 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = [
-    os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
-]
+# TEMPLATE_DIRS = [
+#     os.path.join(BASE_DIR_GENERAL, 'web', 'build'),
+# ]
      
 
 
